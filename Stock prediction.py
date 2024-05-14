@@ -65,19 +65,7 @@ def get_next_closing_day(symbol):
         return None
 
 
-def log_data_to_csv(symbol, current_price, next_closing_day):
-    log_filename = "stock_data_log.csv"
 
-    # Create the CSV file if it doesn't exist
-    if not os.path.exists(log_filename):
-        with open(log_filename, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Date", "Symbol", "Current Price", "Next Closing Day"])
-
-    # Append the data to the CSV file
-    with open(log_filename, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([datetime.now().strftime("%Y-%m-%d %H:%M:%S"), symbol, current_price, next_closing_day])
 
 
 if __name__ == "__main__":
@@ -102,7 +90,6 @@ if __name__ == "__main__":
     plot_stock_data(stock_data, stock_symbol)
 
     # Log the data to a CSV file
-    log_data_to_csv(stock_symbol, current_price, next_closing_day)
 
     if isinstance(current_price, float):
         print(f"The current price of {stock_symbol} is ${current_price:.2f}")
